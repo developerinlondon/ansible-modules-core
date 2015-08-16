@@ -175,6 +175,8 @@ def address_is_associated_with_instance(ec2, address, instance_id):
     """ Check if the elastic IP is currently associated with the instance """
     if address:
         return address and address.instance_id == instance_id
+    elif instance_id:
+        return _find_address_by_instance_id(ec2,instance_id) != address
     return False
 
 
